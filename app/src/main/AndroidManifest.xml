@@ -38,6 +38,11 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name" />
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDEfuB0mr4GLTWTEj-ZJ8wREDSXpJQB-Q4" />
     </application>
 
 </manifest>

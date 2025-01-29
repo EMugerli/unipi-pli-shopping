@@ -14,6 +14,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -68,6 +71,7 @@ open class BaseActivity : AppCompatActivity() {
         }
 
         applyTheme()
+        applyTextSizePreference()
     }
 
     fun startLocationService() {
@@ -92,6 +96,9 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Check the user's location and show a notification if they are near a store
+     */
     private fun checkLocationForNotifications() {
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val locationRequest = LocationRequest.Builder(
@@ -110,13 +117,6 @@ open class BaseActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
@@ -128,6 +128,9 @@ open class BaseActivity : AppCompatActivity() {
         }, Looper.getMainLooper())
     }
 
+    /**
+     * Check if the user is near any stores and show a notification if they are
+     */
     private fun checkNearbyStores(currentLocation: Location) {
         FirebaseFirestore.getInstance().collection("products")
             .get()
@@ -136,7 +139,7 @@ open class BaseActivity : AppCompatActivity() {
                     val product = Product(
                         document.id,
                         document["name"] as String,
-                        document["price"] as Double,
+                        document.getDouble("price") as Double,
                         document["description"] as String,
                         document["release_date"] as com.google.firebase.Timestamp,
                         document["store_location"] as com.google.firebase.firestore.GeoPoint,
@@ -156,6 +159,9 @@ open class BaseActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Create a notification channel for location notifications
+     */
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
@@ -213,6 +219,9 @@ open class BaseActivity : AppCompatActivity() {
         NotificationManagerCompat.from(this).notify(productId.hashCode(), notification)
     }
 
+    /**
+     * Apply the theme based on the user's preference
+     */
     private fun applyTheme() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val nightMode = sharedPreferences.getBoolean("night_mode", false)
@@ -233,5 +242,41 @@ open class BaseActivity : AppCompatActivity() {
     fun updateTheme(){
         applyTheme()
         recreate()
+    }
+
+    fun applyTextSizePreference() {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val textSize = prefs.getString("text_size", "medium") ?: "medium"
+        val scaleFactor = when (textSize) {
+            "small" -> 0.8f
+            "large" -> 1.2f
+            else -> 1.0f // medium
+        }
+        applyTextScaling(scaleFactor)
+    }
+
+    private fun applyTextScaling(scaleFactor: Float) {
+        val rootView = findViewById<ViewGroup>(android.R.id.content)
+        applyScaleToChildren(rootView, scaleFactor)
+    }
+
+    private fun applyScaleToChildren(viewGroup: ViewGroup, scaleFactor: Float) {
+        for (i in 0 until viewGroup.childCount) {
+            val child = viewGroup.getChildAt(i)
+            when (child) {
+                is ViewGroup -> applyScaleToChildren(child, scaleFactor)
+                is TextView -> {
+                    child.textSize = child.textSize * scaleFactor
+                }
+                is Button -> {
+                    child.textSize = child.textSize * scaleFactor
+                }
+                // Add other text components if needed
+            }
+        }
+    }
+
+    fun updateTextSize() {
+        applyTextSizePreference()
     }
 }

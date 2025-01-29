@@ -1,19 +1,19 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory app:title="User Details">
+    <PreferenceCategory app:title="@string/user_details_title">
         <Preference
             android:key="user_name"
-            android:title="Name"
+            android:title="@string/user_details_name"
             android:summary=""
             app:icon="@drawable/ic_person_outline_24dp"/>
         <Preference
             android:key="user_surname"
-            android:title="Surname"
+            android:title="@string/user_details_surname"
             android:summary="" />
         <Preference
             android:key="user_email"
-            android:title="Email"
+            android:title="@string/user_details_email"
             android:summary="" />
 
     </PreferenceCategory>
@@ -29,11 +29,11 @@
             app:icon="@drawable/ic_language_24dp"/>
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Location Services">
+    <PreferenceCategory app:title="@string/location_services_title">
         <SwitchPreferenceCompat
             android:key="location_notifications"
-            android:title="Location Notifications"
-            android:summary="Enable to receive notifications when near a store"
+            android:title="@string/location_notifications"
+            android:summary="@string/location_notifications_summary"
             android:defaultValue="false"
             app:icon="@drawable/ic_my_location_24dp"/>
     </PreferenceCategory>
@@ -49,8 +49,8 @@
 
         <SwitchPreferenceCompat
             android:key="night_mode"
-            android:title="Night Mode"
-            android:summary="Enable night mode"
+            android:title="@string/night_mode"
+            android:summary="@string/night_mode_summary"
             android:defaultValue="false"
             app:icon="@drawable/ic_mode_night_24dp"/>
     </PreferenceCategory>
@@ -58,8 +58,8 @@
     <PreferenceCategory app:title="@string/actions_title">
         <Preference
             android:key="logout"
-            android:title="Logout"
-            android:summary="Log out of your account"
+            android:title="@string/logout"
+            android:summary="@string/logout_summary"
             app:icon="@drawable/ic_logout_24dp"/>
 
     </PreferenceCategory>

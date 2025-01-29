@@ -6,6 +6,6 @@ data class Receipt(
     var id: String,
     val customerId: String,
     val customerName: String,
-    val products: List<String> = emptyList(),
+    val products: Map<String, Int> = emptyMap(),
     val createdAt: Timestamp
 )

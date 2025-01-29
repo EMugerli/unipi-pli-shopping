@@ -47,7 +47,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 val product = Product(
                     document.id,
                     document["name"] as String,
-                    document["price"] as Double,
+                    document.getDouble("price") as Double,
                     document["description"] as String,
                     document["release_date"] as Timestamp,
                     document["store_location"] as GeoPoint,

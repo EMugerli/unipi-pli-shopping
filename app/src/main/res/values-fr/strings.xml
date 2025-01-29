@@ -1,39 +1,47 @@
 <resources>
     <string name="app_name">UnipiPLIShopping</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_dashboard">Tableau de bord</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="title_settings">Settings</string>
-    <string name="english">English</string>
-    <string name="spanish">Spanish</string>
-    <string name="french">French</string>
-    <string name="greek">French</string>
-    <string name="language">Language</string>
-    <string name="choose_language">Choose language</string>
-    <string name="text_size">Text Size</string>
-    <string name="accessibility_title">Accessibility</string>
+    <string name="title_activity_login">Connexion</string>
+    <string name="prompt_email">E-mail</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_sign_in">Se connecter ou s\'inscrire</string>
+    <string name="action_sign_in_short">Se connecter</string>
+    <string name="welcome">"Bienvenue !"</string>
+    <string name="invalid_username">Nom d\'utilisateur invalide</string>
+    <string name="invalid_password">Le mot de passe doit contenir >5 caractères</string>
+    <string name="login_failed">"Échec de la connexion"</string>
+    <string name="title_settings">Paramètres</string>
+    <string name="english">Anglais</string>
+    <string name="spanish">Espagnol</string>
+    <string name="french">Français</string>
+    <string name="greek">Grec</string>
+    <string name="language">Langue</string>
+    <string name="choose_language">Choisissez la langue</string>
+    <string name="text_size">Taille du texte</string>
+    <string name="accessibility_title">Accessibilité</string>
     <string name="actions_title">Actions</string>
+    <string name="dashboard_title">Articles disponibles en magasin</string>
+    <string name="cart_title">Mon panier</string>
+    <string name="checkout_button">Passer à la caisse</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="add_to_cart_button">Ajouter au panier</string>
+    <string name="product_description_template">Description du produit</string>
+    <string name="product_price_template">Prix : 1.40€</string>
+    <string name="product_name_template">Nom du produit</string>
+    <string name="title_cart">Panier</string>
+
+    <string name="logout">Déconnexion</string>
+    <string name="logout_summary">Déconnectez-vous de votre compte</string>
+    <string name="user_details_title">Détails de l\'utilisateur</string>
+    <string name="user_details_name">Nom</string>
+    <string name="user_details_surname">Prénom</string>
+    <string name="user_details_email">E-mail</string>
+    <string name="location_services_title">Services de localisation</string>
+    <string name="location_notifications">Notifications de localisation</string>
+    <string name="location_notifications_summary">Activez pour recevoir des notifications lorsque vous êtes proche d\'un magasin</string>
+    <string name="night_mode">Mode nuit</string>
+    <string name="night_mode_summary">Activer le mode nuit</string>
+
 </resources>

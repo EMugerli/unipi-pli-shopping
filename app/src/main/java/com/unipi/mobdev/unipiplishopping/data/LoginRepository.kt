@@ -58,7 +58,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    private fun initializeUser() {
+    fun initializeUser() {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {
             user = LoggedInUser(firebaseUser.uid, firebaseUser.email ?: "Unknown", "", "", "")

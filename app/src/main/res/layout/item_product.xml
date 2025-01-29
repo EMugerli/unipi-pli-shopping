@@ -35,7 +35,7 @@ app:cardCornerRadius="8dp">
         android:textStyle="bold"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="Product name" />
+        android:text="@string/product_name_template" />
 
     <TextView
         android:id="@+id/item_product_description"
@@ -45,7 +45,7 @@ app:cardCornerRadius="8dp">
         android:layout_marginStart="12dp"
         android:layout_below="@id/item_product_title"
         android:textSize="16sp"
-        android:text="Product Description" />
+        android:text="@string/product_description_template" />
 
     <TextView
         android:id="@+id/item_product_price"
@@ -55,7 +55,7 @@ app:cardCornerRadius="8dp">
         android:layout_marginStart="12dp"
         android:layout_below="@id/item_product_description"
         android:textSize="16sp"
-        android:text="Price: 1.40€"/>
+        android:text="@string/product_price_template"/>
 
 </RelativeLayout>
 

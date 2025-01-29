@@ -63,6 +63,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
         }
 
+        findPreference<ListPreference>("text_size")?.setOnPreferenceChangeListener { _, newValue ->
+            (requireActivity() as BaseActivity).apply {
+                updateTextSize()
+                recreate()
+            }
+            true
+        }
+
         findPreference<Preference>("logout")?.setOnPreferenceClickListener {
             logoutUser()
             true

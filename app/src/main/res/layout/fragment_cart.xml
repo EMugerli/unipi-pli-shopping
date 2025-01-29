@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/cart_title"
-            android:text="My Cart"
+            android:text="@string/cart_title"
             android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Checkout"
+            android:text="@string/checkout_button"
             android:enabled="false" />
     </LinearLayout>
 

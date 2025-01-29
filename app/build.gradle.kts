@@ -74,6 +74,7 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 
 
     testImplementation(libs.junit)

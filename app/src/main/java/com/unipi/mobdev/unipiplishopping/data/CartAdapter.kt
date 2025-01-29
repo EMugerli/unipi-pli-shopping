@@ -12,7 +12,7 @@ import com.unipi.mobdev.unipiplishopping.data.model.Product
 import com.unipi.mobdev.unipiplishopping.databinding.CartItemBinding
 
 class CartAdapter(private val onRemoveClick: (String) -> Unit) :
-    ListAdapter<String, CartAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<Pair<String, Int>, CartAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,12 +20,12 @@ class CartAdapter(private val onRemoveClick: (String) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val productId = getItem(position)
-        holder.bind(productId)
+        val (productId, quantity) = getItem(position)
+        holder.bind(productId, quantity)
     }
 
     inner class ViewHolder(private val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(productId: String) {
+        fun bind(productId: String, quantity: Int) {
             // Fetch product details from Firestore
             FirebaseFirestore.getInstance().collection("products").document(productId)
                 .get()
@@ -34,7 +34,7 @@ class CartAdapter(private val onRemoveClick: (String) -> Unit) :
                     val product = Product(
                         document.id,
                         document["name"] as String,
-                        document["price"] as Double,
+                        document.getDouble("price") as Double,
                         document["description"] as String,
                         document["release_date"] as Timestamp,
                         document["store_location"] as GeoPoint,
@@ -43,6 +43,7 @@ class CartAdapter(private val onRemoveClick: (String) -> Unit) :
 
                     product?.let {
                         binding.productTitle.text = product.name
+                        binding.productQuantity.text = "x${quantity}"
                         binding.productPrice.text = "$${product.price}"
                     }
                 }
@@ -57,8 +58,11 @@ class CartAdapter(private val onRemoveClick: (String) -> Unit) :
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String) = oldItem == newItem
-        override fun areContentsTheSame(oldItem: String, newItem: String) = oldItem == newItem
+    class DiffCallback : DiffUtil.ItemCallback<Pair<String, Int>>() {
+        override fun areItemsTheSame(oldItem: Pair<String, Int>, newItem: Pair<String, Int>) =
+            oldItem.first == newItem.first
+
+        override fun areContentsTheSame(oldItem: Pair<String, Int>, newItem: Pair<String, Int>) =
+            oldItem == newItem
     }
 }
