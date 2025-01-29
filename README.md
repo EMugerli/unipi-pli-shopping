@@ -32,6 +32,15 @@ graph TD
 - Stores: User ID, Timestamp, Product Quantities
 - Automatic cart clearance post-purchase
 
+### 5. **Location Notifications**
+```mermaid
+graph TD
+  A[Location Updates] --> B{In Store Radius?}
+  B -->|Yes| C[Send Notification]
+  C --> D[Open Product on Click]
+  B -->|No| E[Continue Monitoring]
+```
+
 ### 6. **Settings Management**
 - User profile display (name, email)
 - Theme customization (day/night mode)
